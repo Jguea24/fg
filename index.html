@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0b0814">
+<title>Ferchito ❤️ — 16 años de recuerdos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#090711; --bg2:#151024; --card:rgba(28,20,46,.92);
+  --gold:#ffd45a; --gold-soft:#f7df8a; --pink:#ff5d7d;
+  --white:#fff9ff; --muted:#c9bdd7; --line:rgba(255,212,90,.55);
+  --shadow:0 20px 55px rgba(0,0,0,.42);
+  --page-radius:32px;
+  --purple:#7a4aff;
+  --blue:#5ac8ff;
+  --green:#6ee7a8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Montserrat',sans-serif;color:var(--white);min-height:100vh;
+  background:
+    radial-gradient(circle at 8% 8%,rgba(255,212,90,.15),transparent 24%),
+    radial-gradient(circle at 92% 24%,rgba(255,93,125,.13),transparent 25%),
+    radial-gradient(circle at 50% 90%,rgba(122,74,255,.12),transparent 30%),
+    linear-gradient(135deg,var(--bg),var(--bg2) 52%,var(--bg));
+  overflow-x:hidden;
+  display:flex;flex-direction:column;align-items:center;
+  min-height:100vh;padding:0;
+  -webkit-tap-highlight-color:transparent;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;z-index:0;
+  background-image:radial-gradient(#fff 1px,transparent 1px);
+  background-size:46px 46px;mask-image:linear-gradient(to bottom,black,transparent 90%);
+}
+
+/* ===== CONFETI ===== */
+#confettiCanvas{
+  position:fixed;inset:0;pointer-events:none;z-index:2;
+}
+
+/* ===== LIBRO ===== */
+.book{
+  position:relative;width:100%;max-width:1100px;
+  margin:0 auto;padding:20px 20px 100px;
+  z-index:1;
+  display:flex;flex-direction:column;align-items:center;
+  min-height:100vh;
+  justify-content:center;
+}
+
+/* ===== PORTADA ===== */
+.cover{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:40px 25px;width:100%;
+  min-height:85vh;
+  animation:fadeIn 1s ease;
+  position:relative;
+}
+.cover-decorations{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+}
+/* Globos flotantes */
+.balloon{
+  position:absolute;font-size:44px;
+  animation:floatBalloon 6s ease-in-out infinite;
+  filter:drop-shadow(0 8px 16px rgba(0,0,0,.3));
+}
+.balloon:nth-child(1){top:8%;left:6%;animation-delay:0s}
+.balloon:nth-child(2){top:14%;right:8%;animation-delay:1.2s;font-size:52px}
+.balloon:nth-child(3){bottom:18%;left:10%;animation-delay:2.4s;font-size:38px}
+.balloon:nth-child(4){bottom:22%;right:6%;animation-delay:.8s;font-size:46px}
+.balloon:nth-child(5){top:45%;left:3%;animation-delay:3s;font-size:34px;opacity:.7}
+.balloon:nth-child(6){top:50%;right:4%;animation-delay:1.8s;font-size:40px;opacity:.7}
+
+@keyframes floatBalloon{
+  0%,100%{transform:translateY(0) rotate(-3deg)}
+  50%{transform:translateY(-18px) rotate(3deg)}
+}
+
+/* Estrellitas decorativas */
+.sparkle{
+  position:absolute;font-size:20px;color:var(--gold);
+  animation:twinkle 2.5s ease-in-out infinite;
+}
+.sparkle:nth-child(7){top:20%;left:22%;animation-delay:.5s}
+.sparkle:nth-child(8){top:30%;right:25%;animation-delay:1.5s;font-size:26px}
+.sparkle:nth-child(9){bottom:30%;left:18%;animation-delay:2.2s}
+.sparkle:nth-child(10){bottom:20%;right:20%;animation-delay:.9s;font-size:24px}
+.sparkle:nth-child(11){top:60%;left:8%;animation-delay:1.8s}
+
+@keyframes twinkle{
+  0%,100%{opacity:.3;transform:scale(.8)}
+  50%{opacity:1;transform:scale(1.2)}
+}
+
+/* Torta de cumpleaños */
+.cake{
+  font-size:80px;margin:20px 0 10px;
+  animation:cakeBounce 2s ease-in-out infinite;
+  filter:drop-shadow(0 10px 25px rgba(255,212,90,.3));
+}
+@keyframes cakeBounce{
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-10px) scale(1.05)}
+}
+
+.cover .kicker{
+  display:inline-flex;gap:9px;align-items:center;padding:10px 22px;
+  border:1px solid rgba(255,212,90,.45);
+  border-radius:999px;color:var(--gold-soft);font-size:13px;
+  letter-spacing:3px;text-transform:uppercase;
+  background:rgba(255,212,90,.08);backdrop-filter:blur(8px);margin-bottom:20px;
+  box-shadow:0 0 20px rgba(255,212,90,.15);
+  animation:glowPulse 3s ease-in-out infinite;
+}
+@keyframes glowPulse{
+  0%,100%{box-shadow:0 0 20px rgba(255,212,90,.15)}
+  50%{box-shadow:0 0 35px rgba(255,212,90,.35)}
+}
+
+.cover h1{
+  font-family:'Playfair Display',serif;font-size:clamp(48px,10vw,100px);
+  line-height:.95;color:var(--gold);
+  text-shadow:0 0 35px rgba(255,212,90,.3), 0 0 80px rgba(255,212,90,.15);
+  margin-bottom:5px;
+}
+.cover h1 span{color:var(--pink);animation:heartbeat 1.6s ease-in-out infinite;display:inline-block}
+.cover .name-script{
+  font-family:'Great Vibes',cursive;font-size:clamp(36px,7vw,64px);
+  color:var(--pink);margin-top:-10px;
+  text-shadow:0 0 30px rgba(255,93,125,.3);
+}
+.cover p{
+  max-width:600px;margin:22px auto 0;color:var(--muted);font-size:15px;
+  line-height:1.8;font-style:italic;
+}
+.cover .age-badge{
+  display:inline-flex;align-items:center;gap:12px;
+  margin:25px 0 5px;padding:12px 28px;
+  background:linear-gradient(135deg,rgba(255,212,90,.2),rgba(255,93,125,.2));
+  border:2px solid var(--gold);border-radius:999px;
+  font-family:'Playfair Display',serif;font-size:26px;font-weight:700;
+  color:var(--gold);letter-spacing:2px;
+  box-shadow:0 0 30px rgba(255,212,90,.25), inset 0 0 20px rgba(255,212,90,.1);
+}
+.cover .btn-start{
+  margin-top:30px;padding:18px 46px;border-radius:999px;border:2px solid var(--gold);
+  background:linear-gradient(145deg,rgba(255,212,90,.2),rgba(255,212,90,.05));
+  color:var(--gold);font-size:16px;font-weight:700;letter-spacing:1.5px;
+  cursor:pointer;transition:all .35s ease;backdrop-filter:blur(8px);
+  font-family:'Montserrat',sans-serif;text-transform:uppercase;
+  box-shadow:0 0 25px rgba(255,212,90,.2);
+}
+.cover .btn-start:hover{
+  background:var(--gold);color:#0b0814;transform:scale(1.05);
+  box-shadow:0 0 50px rgba(255,212,90,.6);
+}
+
+@keyframes heartbeat{
+  0%,100%{transform:scale(1)}
+  15%{transform:scale(1.2)}
+  30%{transform:scale(1)}
+  45%{transform:scale(1.15)}
+  60%{transform:scale(1)}
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ===== PÁGINA ===== */
+.page{
+  display:none;width:100%;
+  animation:slideUp .6s cubic-bezier(.22,1,.36,1);
+}
+.page.active{display:block;}
+@keyframes slideUp{
+  from{opacity:0;transform:translateY(40px) scale(.98)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.page-inner{
+  background:linear-gradient(145deg,rgba(39,28,60,.94),rgba(13,10,24,.97));
+  border:1px solid rgba(255,212,90,.3);
+  border-radius:var(--page-radius);
+  box-shadow:var(--shadow),0 0 60px rgba(255,212,90,.08);
+  padding:0;overflow:hidden;position:relative;
+}
+.page-inner::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:5px;
+  background:linear-gradient(90deg,var(--gold),var(--pink),var(--purple),var(--gold));
+  background-size:300% 100%;
+  animation:rainbowBar 4s linear infinite;
+  border-radius:var(--page-radius) var(--page-radius) 0 0;
+}
+@keyframes rainbowBar{
+  0%{background-position:0% 50%}
+  100%{background-position:300% 50%}
+}
+
+/* Decoración esquinas */
+.corner-deco{
+  position:absolute;font-size:24px;opacity:.5;pointer-events:none;
+}
+.corner-deco.tl{top:14px;left:18px}
+.corner-deco.tr{top:14px;right:18px}
+.corner-deco.bl{bottom:14px;left:18px}
+.corner-deco.br{bottom:14px;right:18px}
+
+/* ===== CABECERA DE PÁGINA ===== */
+.page-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:28px 32px 12px;gap:16px;position:relative;
+}
+.page-header .year-wrap{
+  display:flex;align-items:center;gap:14px;
+}
+.year-cake{
+  font-size:36px;
+  animation:cakeBounce 2s ease-in-out infinite;
+  filter:drop-shadow(0 4px 10px rgba(255,212,90,.3));
+}
+.page-header .year{
+  font-family:'Playfair Display',serif;font-size:clamp(38px,6vw,58px);
+  font-weight:800;color:var(--gold);letter-spacing:1px;line-height:1;
+  text-shadow:0 0 30px rgba(255,212,90,.25);
+}
+.page-counter{
+  font-size:12px;color:var(--gold-soft);letter-spacing:1.5px;
+  background:rgba(255,212,90,.1);padding:7px 18px;border-radius:999px;
+  border:1px solid rgba(255,212,90,.3);white-space:nowrap;
+  font-weight:600;
+}
+
+/* ===== FRASE ===== */
+.page-phrase{
+  padding:0 32px 22px;color:var(--white);
+  font-size:clamp(15px,2.5vw,19px);line-height:1.75;font-style:italic;
+  border-bottom:1px solid rgba(255,212,90,.15);
+  margin:0 32px 24px;padding-left:0;padding-right:0;padding-bottom:22px;
+  position:relative;
+}
+.page-phrase::before{
+  content:"❝";color:var(--gold);font-size:28px;margin-right:8px;
+  font-style:normal;vertical-align:-4px;
+}
+.page-phrase::after{
+  content:"❞";color:var(--gold);font-size:28px;margin-left:8px;
+  font-style:normal;vertical-align:-8px;
+}
+
+/* ===== GALERÍA ===== */
+.page-gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:16px;
+  padding:0 32px 32px;
+}
+.page-gallery .photo{
+  appearance:none;border:2px solid rgba(255,212,90,.25);
+  padding:0;width:100%;
+  aspect-ratio:4/3;border-radius:20px;overflow:hidden;
+  background:#080610;cursor:zoom-in;
+  box-shadow:0 10px 28px rgba(0,0,0,.4), 0 0 0 4px rgba(255,212,90,.05);
+  position:relative;
+  transition:transform .4s cubic-bezier(.22,1,.36,1),
+             border-color .35s ease,
+             box-shadow .35s ease;
+}
+.page-gallery .photo:hover{
+  transform:translateY(-6px) scale(1.03);
+  border-color:var(--gold);
+  box-shadow:0 18px 40px rgba(0,0,0,.55),
+             0 0 30px rgba(255,212,90,.3),
+             0 0 0 4px rgba(255,212,90,.15);
+  z-index:2;
+}
+.page-gallery .photo::after{
+  content:"⌕";position:absolute;right:12px;bottom:10px;
+  width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;color:white;
+  background:rgba(0,0,0,.55);backdrop-filter:blur(6px);
+  opacity:0;transition:.3s;font-size:18px;
+  border:1px solid rgba(255,255,255,.2);
+}
+.page-gallery .photo:hover::after{opacity:1}
+.page-gallery .photo img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .6s cubic-bezier(.22,1,.36,1),filter .4s ease;
+}
+.page-gallery .photo:hover img{transform:scale(1.1);filter:brightness(1.1) saturate(1.1)}
+.page-gallery:empty{display:none}
+
+/* Marco brillante animado en fotos destacadas */
+.page-gallery .photo::before{
+  content:"";position:absolute;inset:0;border-radius:18px;
+  background:linear-gradient(135deg,rgba(255,212,90,.15),transparent 40%,transparent 60%,rgba(255,93,125,.15));
+  opacity:0;transition:opacity .35s;pointer-events:none;z-index:1;
+}
+.page-gallery .photo:hover::before{opacity:1}
+
+/* ===== NAVEGACIÓN ===== */
+.nav-bar{
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  padding:24px 20px 15px;width:100%;max-width:600px;margin:0 auto;
+}
+.nav-btn{
+  width:58px;height:58px;border-radius:50%;
+  border:2px solid rgba(255,212,90,.5);
+  background:linear-gradient(145deg,rgba(255,212,90,.12),rgba(255,212,90,.03));
+  color:var(--gold);font-size:24px;
+  cursor:pointer;transition:all .3s ease;
+  display:grid;place-items:center;
+  backdrop-filter:blur(6px);
+  font-family:'Montserrat',sans-serif;flex-shrink:0;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+}
+.nav-btn:hover:not(:disabled){
+  background:var(--gold);color:#0b0814;
+  border-color:var(--gold);
+  box-shadow:0 0 35px rgba(255,212,90,.5);
+  transform:scale(1.1);
+}
+.nav-btn:disabled{opacity:.25;cursor:not-allowed;border-color:rgba(255,212,90,.2)}
+.nav-btn:active:not(:disabled){transform:scale(.95)}
+
+.nav-dots{
+  display:flex;gap:7px;flex-wrap:wrap;justify-content:center;max-width:300px;
+}
+.nav-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:rgba(255,255,255,.2);
+  border:none;cursor:pointer;transition:all .3s ease;padding:0;
+}
+.nav-dot.active{
+  background:var(--gold);
+  box-shadow:0 0 14px rgba(255,212,90,.7);
+  transform:scale(1.4);
+}
+.nav-dot:hover{background:rgba(255,212,90,.6)}
+
+.page-indicator{
+  text-align:center;color:var(--muted);font-size:12px;
+  letter-spacing:1.5px;margin-top:4px;padding-bottom:10px;
+}
+
+/* ===== PÁGINA FINAL ===== */
+.page-final .page-inner{
+  border:2px solid var(--gold);
+  box-shadow:0 0 80px rgba(255,212,90,.18),var(--shadow);
+  position:relative;overflow:hidden;
+}
+.page-final .page-inner::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 20% 10%,rgba(255,212,90,.1),transparent 40%),
+             radial-gradient(circle at 80% 90%,rgba(255,93,125,.1),transparent 40%);
+  pointer-events:none;
+}
+.page-final .closing-content{
+  padding:45px 40px 55px;text-align:center;position:relative;z-index:1;
+}
+.page-final .year-big{
+  font-family:'Playfair Display',serif;font-size:clamp(44px,7vw,68px);
+  font-weight:800;color:var(--gold);line-height:1;margin-bottom:8px;
+  text-shadow:0 0 40px rgba(255,212,90,.4);
+}
+.page-final .cake-big{
+  font-size:70px;margin:10px 0 15px;
+  animation:cakeBounce 2s ease-in-out infinite;
+  filter:drop-shadow(0 10px 30px rgba(255,212,90,.4));
+}
+.page-final h2{
+  font-family:'Playfair Display',serif;color:var(--gold);
+  font-size:clamp(24px,4vw,38px);margin:10px 0 22px;
+}
+.page-final .intro{
+  color:var(--muted);font-style:italic;line-height:1.9;
+  margin-bottom:24px;font-size:15px;
+}
+.page-final .intro p{margin-bottom:10px}
+.page-final .heart{font-size:36px;margin:18px 0;color:var(--pink);animation:heartbeat 1.6s ease-in-out infinite}
+.page-final .closing-text{
+  text-align:left;line-height:1.9;font-size:15px;
+  max-width:700px;margin:0 auto;
+}
+.page-final .closing-text p{margin-bottom:16px}
+.page-final .signature{
+  font-family:'Great Vibes',cursive;color:var(--gold);
+  font-size:30px;line-height:1.5;margin-top:30px;
+}
+
+/* ===== LIGHTBOX ===== */
+.lightbox{
+  position:fixed;inset:0;background:rgba(3,2,7,.95);backdrop-filter:blur(14px);
+  z-index:100;display:none;place-items:center;padding:20px;
+}
+.lightbox.open{display:grid}
+.lightbox img{
+  max-width:min(1100px,94vw);max-height:86vh;object-fit:contain;
+  border-radius:18px;box-shadow:0 0 80px rgba(255,212,90,.25),0 0 40px rgba(0,0,0,.8);
+  border:2px solid rgba(255,212,90,.3);
+}
+.close{
+  position:fixed;right:20px;top:16px;width:48px;height:48px;
+  border:2px solid rgba(255,212,90,.4);border-radius:50%;
+  background:rgba(255,212,90,.1);color:var(--gold);font-size:26px;
+  cursor:pointer;z-index:101;transition:all .3s ease;
+  display:grid;place-items:center;
+}
+.close:hover{background:var(--gold);color:#0b0814;transform:rotate(90deg)}
+.lightbox-caption{
+  position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
+  color:var(--muted);font-size:12px;text-align:center;width:100%;padding:0 20px;
+}
+
+/* ===== PROGRESO ===== */
+.progress{
+  position:fixed;top:0;left:0;width:100%;height:4px;z-index:50;
+  background:linear-gradient(90deg,var(--gold),var(--pink),var(--purple),var(--gold));
+  background-size:300% 100%;
+  animation:rainbowBar 3s linear infinite;
+  transform-origin:left;transform:scaleX(0);
+  transition:transform .5s cubic-bezier(.22,1,.36,1);
+  box-shadow:0 0 15px rgba(255,212,90,.5);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:720px){
+  .book{padding:10px 10px 80px}
+  .page-header{padding:22px 22px 10px;flex-wrap:wrap;gap:10px}
+  .page-header .year{font-size:clamp(32px,8vw,44px)}
+  .year-cake{font-size:28px}
+  .page-phrase{padding:0 22px 16px;margin:0 22px 18px;font-size:14px}
+  .page-gallery{padding:0 22px 24px;gap:12px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+  .nav-bar{gap:14px;padding:18px 12px 15px}
+  .nav-btn{width:50px;height:50px;font-size:20px}
+  .nav-dots{gap:6px;max-width:220px}
+  .nav-dot{width:9px;height:9px}
+  .page-final .closing-content{padding:30px 22px 40px}
+  .page-final .cake-big{font-size:56px}
+  .cover{padding:30px 18px;min-height:75vh}
+  .cover h1{font-size:clamp(42px,12vw,70px)}
+  .cover .cake{font-size:64px}
+  .cover .btn-start{padding:15px 36px;font-size:14px}
+  .cover .age-badge{font-size:22px;padding:10px 22px}
+  .balloon{font-size:32px!important}
+  .close{right:12px;top:12px;width:42px;height:42px;font-size:22px}
+}
+@media(max-width:430px){
+  .page-gallery{grid-template-columns:1fr 1fr;gap:10px}
+  .page-gallery .photo{aspect-ratio:1/1}
+  .page-header .year{font-size:30px}
+  .page-counter{font-size:11px;padding:5px 14px}
+  .cover .name-script{font-size:38px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    scroll-behavior:auto!important;
+    animation:none!important;
+    transition:none!important;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="progress" id="progress"></div>
+<canvas id="confettiCanvas"></canvas>
+
+<div class="book" id="book">
+
+  <!-- PORTADA -->
+  <div class="cover" id="cover">
+    <div class="cover-decorations">
+      <div class="balloon">🎈</div>
+      <div class="balloon">🎈</div>
+      <div class="balloon">🎈</div>
+      <div class="balloon">🎈</div>
+      <div class="balloon">🎈</div>
+      <div class="balloon">🎈</div>
+      <div class="sparkle">✦</div>
+      <div class="sparkle">✦</div>
+      <div class="sparkle">✦</div>
+      <div class="sparkle">✦</div>
+      <div class="sparkle">✦</div>
+    </div>
+
+    <div class="kicker">✦ Una historia de amor ✦</div>
+    <div class="cake">🎂</div>
+    <h1>Ferchito <span>♥</span></h1>
+    <div class="name-script">Feliz Cumpleaños</div>
+    <div class="age-badge">🎉 16 Años 🎉</div>
+    <p>Una línea de tiempo de 16 años de recuerdos, sonrisas, momentos inolvidables y muchísimo amor.</p>
+    <button class="btn-start" id="startBtn">✦ Comenzar el viaje ✦</button>
+  </div>
+
+  <!-- CONTENEDOR DE PÁGINAS -->
+  <div id="pagesContainer"></div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="close" id="closeLightbox" aria-label="Cerrar">×</button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-caption">Haz clic fuera de la foto o presiona ESC para cerrar</div>
+</div>
+
+<script>
+/* ===== DATOS DE LAS PÁGINAS ===== */
+const pagesData = [
+  { year:"2010", phrase:"Y pensar que te cargaba entre mis brazos…", photos:[
+    {src:"fotos/Imagen1_2010.jpg", alt:"Recuerdo de Ferchito 2010"},
+    {src:"fotos/Imagen2_2010.png", alt:"Recuerdo de Ferchito 2010"},
+    {src:"fotos/Imagen3_2010.png", alt:"Recuerdo de Ferchito 2010"}
+  ]},
+  { year:"2011", phrase:"Parece que fue apenas el día de ayer.", photos:[
+    {src:"fotos/Imagen4_2011.jpg", alt:"Recuerdo de Ferchito 2011"},
+    {src:"fotos/Imagen5_2011.jpg", alt:"Recuerdo de Ferchito 2011"}
+  ]},
+  { year:"2012", phrase:"Y tan rápido… ya tienes 16 años.", photos:[
+    {src:"fotos/Imagen6_2012.jpg", alt:"Recuerdo de Ferchito 2012"},
+    {src:"fotos/Imagen7_2012.jpg", alt:"Recuerdo de Ferchito 2012"}
+  ]},
+  { year:"2013", phrase:"No puede ser… ¿en qué momento creciste tanto?", photos:[
+    {src:"fotos/Imagen8_2013.jpg", alt:"Recuerdo de Ferchito 2013"},
+    {src:"fotos/Imagen9_2013.png", alt:"Recuerdo de Ferchito 2013"}
+  ]},
+  { year:"2014", phrase:"Recuerdo toda la alegría que has traído a mi vida.", photos:[
+    {src:"fotos/Imagen10_2014.jpg", alt:"Recuerdo de Ferchito 2014"}
+  ]},
+  { year:"2015", phrase:"Y mirar en el ser hermoso en el que te has convertido…", photos:[
+    {src:"fotos/Imagen11_2015.jpg", alt:"Recuerdo de Ferchito 2015"},
+    {src:"fotos/Imagen12_2015.jpg", alt:"Recuerdo de Ferchito 2015"},
+    {src:"fotos/Imagen13_2015.jpg", alt:"Recuerdo de Ferchito 2015"}
+  ]},
+  { year:"2016", phrase:"Me llena el corazón de orgullo.", photos:[
+    {src:"fotos/Imagen14_2016.jpg", alt:"Recuerdo de Ferchito 2016"},
+    {src:"fotos/Imagen15_2016.jpg", alt:"Recuerdo de Ferchito 2016"},
+    {src:"fotos/Imagen16_2016.jpg", alt:"Recuerdo de Ferchito 2016"}
+  ]},
+  { year:"2017", phrase:"Como si desde arriba…", photos:[
+    {src:"fotos/Imagen17_2017.jpg", alt:"Recuerdo de Ferchito 2017"}
+  ]},
+  { year:"2018", phrase:"…me hubieran dado demasiado.", photos:[
+    {src:"fotos/Imagen18_2018.jpg", alt:"Recuerdo de Ferchito 2018"},
+    {src:"fotos/Imagen19_2018.jpg", alt:"Recuerdo de Ferchito 2018"}
+  ]},
+  { year:"2019", phrase:"Como un regalo que quizá no merecía…", photos:[
+    {src:"fotos/Imagen19_2019.jpg", alt:"Recuerdo de Ferchito 2019"}
+  ]},
+  { year:"2020", phrase:"Como si jamás fueras a marcharte de mis brazos.", photos:[
+    {src:"fotos/Imagen25_2020.jpg", alt:"Recuerdo de Ferchito 2020"}
+  ]},
+  { year:"2021", phrase:"Aunque estés creciendo, para mí siempre serás mi niño.", photos:[
+    {src:"fotos/Imagen26_2021.jpg", alt:"Recuerdo de Ferchito 2021"},
+    {src:"fotos/Imagen27_2021.jpg", alt:"Recuerdo de Ferchito 2021"}
+  ]},
+  { year:"2022", phrase:"Ojalá pudiera pedirte que ya…", photos:[
+    {src:"fotos/Imagen28_2022.jpg", alt:"Recuerdo de Ferchito 2022"},
+    {src:"fotos/Imagen29_2022.png", alt:"Recuerdo de Ferchito 2022"}
+  ]},
+  { year:"2023", phrase:"Por favor… no crezcas más.", photos:[
+    {src:"fotos/Imagen30_2023.jpg", alt:"Recuerdo de Ferchito 2023"},
+    {src:"fotos/Imagen31_2023.jpg", alt:"Recuerdo de Ferchito 2023"}
+  ]},
+  { year:"2024", phrase:"Tal vez no sepas que yo me levanto cada día por ti.", photos:[
+    {src:"fotos/Imagen32_2024.jpg", alt:"Recuerdo de Ferchito 2024"},
+    {src:"fotos/Imagen33_2024.jpg", alt:"Recuerdo de Ferchito 2024"}
+  ]},
+  { year:"2025", phrase:"Que cuando te falta algo, a veces no puedo ni dormir.", photos:[
+    {src:"fotos/Imagen34_2025.jpg", alt:"Recuerdo de Ferchito 2025"},
+    {src:"fotos/Imagen35_2025.jpg", alt:"Recuerdo de Ferchito 2025"},
+    {src:"fotos/Imagen36_2025.jpg", alt:"Recuerdo de Ferchito 2025"},
+    {src:"fotos/Imagen37_2025.jpg", alt:"Recuerdo de Ferchito 2025"},
+    {src:"fotos/Imagen38_2025.jpg", alt:"Recuerdo de Ferchito 2025"}
+  ]},
+  { year:"2026", phrase:"Hoy cumples 16…", photos:[
+    {src:"fotos/Imagen39_2026.jpg", alt:"Recuerdo de Ferchito 2026"}
+  ]}
+];
+
+const pagesContainer = document.getElementById('pagesContainer');
+const totalPages = pagesData.length + 1;
+let currentPage = -1;
+
+/* ===== CONFETI ===== */
+const confettiCanvas = document.getElementById('confettiCanvas');
+const ctx = confettiCanvas.getContext('2d');
+let confettiParticles = [];
+let confettiActive = false;
+
+function resizeCanvas(){
+  confettiCanvas.width = window.innerWidth;
+  confettiCanvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+const confettiColors = ['#ffd45a','#ff5d7d','#7a4aff','#5ac8ff','#6ee7a8','#fff9ff'];
+
+function createConfetti(count = 60){
+  for(let i=0;i<count;i++){
+    confettiParticles.push({
+      x: Math.random() * confettiCanvas.width,
+      y: -20 - Math.random() * 100,
+      w: 6 + Math.random() * 8,
+      h: 4 + Math.random() * 6,
+      color: confettiColors[Math.floor(Math.random()*confettiColors.length)],
+      vy: 1.5 + Math.random() * 2.5,
+      vx: (Math.random() - 0.5) * 1.5,
+      rot: Math.random() * 360,
+      vrot: (Math.random() - 0.5) * 8,
+      shape: Math.random() > 0.5 ? 'rect' : 'circle',
+      life: 1
+    });
+  }
+  if(!confettiActive){
+    confettiActive = true;
+    animateConfetti();
+  }
+}
+
+function animateConfetti(){
+  ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+  confettiParticles.forEach((p, i) => {
+    p.y += p.vy;
+    p.x += p.vx + Math.sin(p.y * 0.01) * 0.5;
+    p.rot += p.vrot;
+    p.life -= 0.003;
+    if(p.y > confettiCanvas.height + 30 || p.life <= 0){
+      confettiParticles.splice(i, 1);
+      return;
+    }
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot * Math.PI / 180);
+    ctx.globalAlpha = Math.max(0, p.life);
+    ctx.fillStyle = p.color;
+    if(p.shape === 'rect'){
+      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+    } else {
+      ctx.beginPath();
+      ctx.arc(0, 0, p.w/2, 0, Math.PI*2);
+      ctx.fill();
+    }
+    ctx.restore();
+  });
+  if(confettiParticles.length > 0){
+    requestAnimationFrame(animateConfetti);
+  } else {
+    confettiActive = false;
+    ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+  }
+}
+
+/* ===== CONSTRUIR PÁGINAS ===== */
+function buildPages() {
+  pagesData.forEach((data, index) => {
+    const page = document.createElement('div');
+    page.className = 'page';
+    page.dataset.index = index;
+
+    const photoHTML = data.photos.map(p => `
+      <button class="photo" type="button" aria-label="Ver recuerdo de ${data.year}" data-full="${p.src}">
+        <img src="${p.src}" alt="${p.alt}" loading="lazy"
+             onerror="this.closest('.photo').remove();">
+      </button>
+    `).join('');
+
+    page.innerHTML = `
+      <div class="page-inner">
+        <span class="corner-deco tl">✦</span>
+        <span class="corner-deco tr">✦</span>
+        <span class="corner-deco bl">✦</span>
+        <span class="corner-deco br">✦</span>
+        <div class="page-header">
+          <div class="year-wrap">
+            <span class="year-cake">🎂</span>
+            <span class="year">${data.year}</span>
+          </div>
+          <span class="page-counter">${index + 1} / ${totalPages}</span>
+        </div>
+        <p class="page-phrase">${data.phrase}</p>
+        <div class="page-gallery">${photoHTML}</div>
+      </div>
+    `;
+    pagesContainer.appendChild(page);
+  });
+
+  // Página final
+  const finalPage = document.createElement('div');
+  finalPage.className = 'page page-final';
+  finalPage.dataset.index = pagesData.length;
+  finalPage.innerHTML = `
+    <div class="page-inner">
+      <span class="corner-deco tl">🎈</span>
+      <span class="corner-deco tr">🎈</span>
+      <span class="corner-deco bl">🎈</span>
+      <span class="corner-deco br">🎈</span>
+      <div class="closing-content">
+        <div class="year-big">2026</div>
+        <div class="cake-big">🎂</div>
+        <h2>"Hoy cumples 16…"</h2>
+        <div class="intro">
+          <p>Y aunque quisiera detener el tiempo, sé que tienes que seguir creciendo.</p>
+          <p>Me asusta el mundo en el que vivimos, porque mi mayor deseo es verte siempre protegido, feliz y bajo la bendición de Dios.</p>
+        </div>
+        <div class="heart">❤️</div>
+        <h2>Felices 16 años, mi niño</h2>
+        <div class="closing-text">
+          <p>Hoy miro hacia atrás y todavía puedo verte pequeño entre mis brazos. Parece mentira que aquel bebé que llegó a llenar mi vida de alegría hoy tenga 16 años. El tiempo ha pasado demasiado rápido…</p>
+          <p>Y aunque quisiera detenerlo, solo puedo agradecerle a Dios por regalarme el privilegio de verte crecer. Que Dios cuide siempre tus pasos, proteja tu corazón y te acompañe en cada camino que decidas recorrer.</p>
+          <p>Nunca olvides cuánto te amo, cuánto me importas y lo orgulloso/a que estoy de ti. Siempre serás mi niño, aunque el tiempo insista en hacerte crecer.</p>
+        </div>
+        <div class="heart">❤️</div>
+        <div class="signature">Te amo infinitamente.<br>Felices 16, Ferchito.</div>
+      </div>
+    </div>
+  `;
+  pagesContainer.appendChild(finalPage);
+}
+
+/* ===== NAVEGACIÓN ===== */
+function showPage(index) {
+  const pages = document.querySelectorAll('.page');
+  const cover = document.getElementById('cover');
+  const dots = document.querySelectorAll('.nav-dot');
+
+  if (index < 0 || index >= totalPages) return;
+
+  if (cover) cover.style.display = 'none';
+  pages.forEach((p, i) => p.classList.toggle('active', i === index));
+  dots.forEach((d, i) => d.classList.toggle('active', i === index));
+
+  currentPage = index;
+  updateProgress();
+  updateNavButtons();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+
+  // Confeti al entrar a la página final
+  if (index === totalPages - 1) {
+    setTimeout(() => createConfetti(120), 300);
+  }
+}
+
+function updateProgress() {
+  const progress = document.getElementById('progress');
+  const pct = totalPages > 1 ? (currentPage + 1) / totalPages : 1;
+  progress.style.transform = `scaleX(${pct})`;
+}
+
+function updateNavButtons() {
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  if (prevBtn) prevBtn.disabled = currentPage <= 0;
+  if (nextBtn) nextBtn.disabled = currentPage >= totalPages - 1;
+
+  const indicator = document.getElementById('pageIndicator');
+  if (indicator) {
+    if (currentPage >= 0) {
+      indicator.textContent = `Página ${currentPage + 1} de ${totalPages}`;
+      indicator.style.display = 'block';
+    } else {
+      indicator.style.display = 'none';
+    }
+  }
+}
+
+function buildNav() {
+  const nav = document.createElement('div');
+  nav.className = 'nav-bar';
+  nav.innerHTML = `
+    <button class="nav-btn" id="prevBtn" aria-label="Anterior" disabled>‹</button>
+    <div class="nav-dots" id="navDots"></div>
+    <button class="nav-btn" id="nextBtn" aria-label="Siguiente">›</button>
+  `;
+  document.getElementById('book').appendChild(nav);
+
+  const indicator = document.createElement('div');
+  indicator.className = 'page-indicator';
+  indicator.id = 'pageIndicator';
+  indicator.style.display = 'none';
+  document.getElementById('book').appendChild(indicator);
+
+  const dotsContainer = document.getElementById('navDots');
+  for (let i = 0; i < totalPages; i++) {
+    const dot = document.createElement('button');
+    dot.className = 'nav-dot';
+    dot.setAttribute('aria-label', `Ir a página ${i + 1}`);
+    dot.addEventListener('click', () => showPage(i));
+    dotsContainer.appendChild(dot);
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    if (currentPage > 0) showPage(currentPage - 1);
+  });
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    if (currentPage < totalPages - 1) showPage(currentPage + 1);
+  });
+}
+
+/* ===== LIGHTBOX ===== */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const closeLightbox = document.getElementById('closeLightbox');
+
+function openPhoto(src, alt) {
+  lightboxImg.src = src;
+  lightboxImg.alt = alt || 'Recuerdo de Ferchito';
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closePhoto() {
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  lightboxImg.src = '';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('click', (e) => {
+  const photoBtn = e.target.closest('.photo');
+  if (photoBtn) {
+    const img = photoBtn.querySelector('img');
+    openPhoto(photoBtn.dataset.full, img?.alt);
+  }
+});
+closeLightbox.addEventListener('click', closePhoto);
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) closePhoto();
+});
+
+/* ===== TECLADO ===== */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { closePhoto(); return; }
+  if (lightbox.classList.contains('open')) return;
+
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (currentPage < totalPages - 1) showPage(currentPage + 1);
+    else if (currentPage === -1) startBook();
+  }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (currentPage > 0) showPage(currentPage - 1);
+    else if (currentPage === 0) goToCover();
+  }
+});
+
+/* ===== INICIO ===== */
+function startBook() {
+  createConfetti(100);
+  showPage(0);
+}
+
+function goToCover() {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('cover').style.display = 'flex';
+  currentPage = -1;
+  document.getElementById('progress').style.transform = 'scaleX(0)';
+  updateNavButtons();
+  document.getElementById('pageIndicator').style.display = 'none';
+  document.querySelectorAll('.nav-dot').forEach(d => d.classList.remove('active'));
+}
+
+/* ===== INICIALIZAR ===== */
+function init() {
+  buildPages();
+  buildNav();
+
+  document.getElementById('startBtn').addEventListener('click', startBook);
+  document.getElementById('cover').addEventListener('click', (e) => {
+    if (e.target.id === 'cover' || e.target.closest('.cover')) {
+      if (e.target.tagName !== 'BUTTON') startBook();
+    }
+  });
+
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+
+  pagesData.forEach(data => {
+    data.photos.forEach(p => {
+      const img = new Image();
+      img.src = p.src;
+    });
+  });
+}
+
+// Limpiar galerías vacías
+setTimeout(() => {
+  document.querySelectorAll('.page-gallery').forEach(gallery => {
+    if (!gallery.querySelector('img') && gallery.children.length > 0) {
+      gallery.innerHTML = '<p style="color:var(--muted);font-style:italic;padding:30px;text-align:center;grid-column:1/-1;">✨ Recuerdo guardado en el corazón ✨</p>';
+    }
+  });
+}, 3000);
+
+init();
+</script>
+</body>
+</html>
