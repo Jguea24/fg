@@ -65,7 +65,6 @@ body::before{
 .cover-decorations{
   position:absolute;inset:0;pointer-events:none;overflow:hidden;
 }
-/* Globos flotantes */
 .balloon{
   position:absolute;font-size:44px;
   animation:floatBalloon 6s ease-in-out infinite;
@@ -83,7 +82,6 @@ body::before{
   50%{transform:translateY(-18px) rotate(3deg)}
 }
 
-/* Estrellitas decorativas */
 .sparkle{
   position:absolute;font-size:20px;color:var(--gold);
   animation:twinkle 2.5s ease-in-out infinite;
@@ -99,7 +97,6 @@ body::before{
   50%{opacity:1;transform:scale(1.2)}
 }
 
-/* Torta de cumpleaños */
 .cake{
   font-size:80px;margin:20px 0 10px;
   animation:cakeBounce 2s ease-in-out infinite;
@@ -201,7 +198,6 @@ body::before{
   100%{background-position:300% 50%}
 }
 
-/* Decoración esquinas */
 .corner-deco{
   position:absolute;font-size:24px;opacity:.5;pointer-events:none;
 }
@@ -210,7 +206,6 @@ body::before{
 .corner-deco.bl{bottom:14px;left:18px}
 .corner-deco.br{bottom:14px;right:18px}
 
-/* ===== CABECERA DE PÁGINA ===== */
 .page-header{
   display:flex;align-items:center;justify-content:space-between;
   padding:28px 32px 12px;gap:16px;position:relative;
@@ -235,7 +230,6 @@ body::before{
   font-weight:600;
 }
 
-/* ===== FRASE ===== */
 .page-phrase{
   padding:0 32px 22px;color:var(--white);
   font-size:clamp(15px,2.5vw,19px);line-height:1.75;font-style:italic;
@@ -252,7 +246,6 @@ body::before{
   font-style:normal;vertical-align:-8px;
 }
 
-/* ===== GALERÍA ===== */
 .page-gallery{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
@@ -294,7 +287,6 @@ body::before{
 .page-gallery .photo:hover img{transform:scale(1.1);filter:brightness(1.1) saturate(1.1)}
 .page-gallery:empty{display:none}
 
-/* Marco brillante animado en fotos destacadas */
 .page-gallery .photo::before{
   content:"";position:absolute;inset:0;border-radius:18px;
   background:linear-gradient(135deg,rgba(255,212,90,.15),transparent 40%,transparent 60%,rgba(255,93,125,.15));
@@ -302,7 +294,6 @@ body::before{
 }
 .page-gallery .photo:hover::before{opacity:1}
 
-/* ===== NAVEGACIÓN ===== */
 .nav-bar{
   display:flex;align-items:center;justify-content:center;gap:20px;
   padding:24px 20px 15px;width:100%;max-width:600px;margin:0 auto;
@@ -347,7 +338,6 @@ body::before{
   letter-spacing:1.5px;margin-top:4px;padding-bottom:10px;
 }
 
-/* ===== PÁGINA FINAL ===== */
 .page-final .page-inner{
   border:2px solid var(--gold);
   box-shadow:0 0 80px rgba(255,212,90,.18),var(--shadow);
@@ -392,7 +382,6 @@ body::before{
   font-size:30px;line-height:1.5;margin-top:30px;
 }
 
-/* ===== LIGHTBOX ===== */
 .lightbox{
   position:fixed;inset:0;background:rgba(3,2,7,.95);backdrop-filter:blur(14px);
   z-index:100;display:none;place-items:center;padding:20px;
@@ -416,7 +405,6 @@ body::before{
   color:var(--muted);font-size:12px;text-align:center;width:100%;padding:0 20px;
 }
 
-/* ===== PROGRESO ===== */
 .progress{
   position:fixed;top:0;left:0;width:100%;height:4px;z-index:50;
   background:linear-gradient(90deg,var(--gold),var(--pink),var(--purple),var(--gold));
@@ -427,7 +415,41 @@ body::before{
   box-shadow:0 0 15px rgba(255,212,90,.5);
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== BOTÓN DE MÚSICA ===== */
+.music-btn{
+  position:fixed;bottom:22px;right:22px;z-index:60;
+  width:56px;height:56px;border-radius:50%;
+  border:2px solid var(--gold);
+  background:linear-gradient(145deg,rgba(255,212,90,.25),rgba(255,212,90,.08));
+  color:var(--gold);font-size:22px;
+  cursor:pointer;transition:all .3s ease;
+  display:grid;place-items:center;
+  backdrop-filter:blur(10px);
+  box-shadow:0 6px 24px rgba(0,0,0,.4), 0 0 20px rgba(255,212,90,.2);
+}
+.music-btn:hover{
+  background:var(--gold);color:#0b0814;
+  transform:scale(1.1);
+  box-shadow:0 0 35px rgba(255,212,90,.6);
+}
+.music-btn.playing{
+  animation:musicPulse 1.5s ease-in-out infinite;
+}
+@keyframes musicPulse{
+  0%,100%{box-shadow:0 6px 24px rgba(0,0,0,.4), 0 0 20px rgba(255,212,90,.2)}
+  50%{box-shadow:0 6px 24px rgba(0,0,0,.4), 0 0 35px rgba(255,212,90,.55)}
+}
+
+#ytPlayerWrap{
+  position:fixed;
+  bottom:-9999px;
+  left:-9999px;
+  width:1px;
+  height:1px;
+  opacity:0;
+  pointer-events:none;
+}
+
 @media(max-width:720px){
   .book{padding:10px 10px 80px}
   .page-header{padding:22px 22px 10px;flex-wrap:wrap;gap:10px}
@@ -448,6 +470,7 @@ body::before{
   .cover .age-badge{font-size:22px;padding:10px 22px}
   .balloon{font-size:32px!important}
   .close{right:12px;top:12px;width:42px;height:42px;font-size:22px}
+  .music-btn{width:48px;height:48px;font-size:18px;bottom:16px;right:16px}
 }
 @media(max-width:430px){
   .page-gallery{grid-template-columns:1fr 1fr;gap:10px}
@@ -470,9 +493,14 @@ body::before{
 <div class="progress" id="progress"></div>
 <canvas id="confettiCanvas"></canvas>
 
+<div id="ytPlayerWrap">
+  <div id="ytPlayer"></div>
+</div>
+
+<button class="music-btn" id="musicBtn" aria-label="Reproducir música" title="Reproducir música">🔇</button>
+
 <div class="book" id="book">
 
-  <!-- PORTADA -->
   <div class="cover" id="cover">
     <div class="cover-decorations">
       <div class="balloon">🎈</div>
@@ -497,12 +525,10 @@ body::before{
     <button class="btn-start" id="startBtn">✦ Comenzar el viaje ✦</button>
   </div>
 
-  <!-- CONTENEDOR DE PÁGINAS -->
   <div id="pagesContainer"></div>
 
 </div>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" aria-hidden="true">
   <button class="close" id="closeLightbox" aria-label="Cerrar">×</button>
   <img id="lightboxImg" src="" alt="">
@@ -657,6 +683,120 @@ function animateConfetti(){
   }
 }
 
+/* ===== MÚSICA (YouTube API) ===== */
+let ytPlayer = null;
+let musicPlaying = false;
+let musicReady = false;
+let musicUnlocked = false;   // Indica si el usuario ya interactuó (desbloqueó audio)
+const musicBtn = document.getElementById('musicBtn');
+
+(function loadYouTubeAPI(){
+  const tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  const firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+})();
+
+window.onYouTubeIframeAPIReady = function(){
+  ytPlayer = new YT.Player('ytPlayer', {
+    height: '1',
+    width: '1',
+    videoId: 'MpZeav_kE6g',
+    playerVars: {
+      autoplay: 0,
+      controls: 0,
+      disablekb: 1,
+      fs: 0,
+      modestbranding: 1,
+      rel: 0,
+      loop: 1,
+      playlist: 'MpZeav_kE6g',
+      playsinline: 1,
+      origin: window.location.origin
+    },
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
+};
+
+function onPlayerReady(event){
+  musicReady = true;
+  // Si el usuario ya interactuó antes de que la API estuviera lista, reproducimos
+  if(musicUnlocked){
+    event.target.playVideo();
+    musicPlaying = true;
+    updateMusicButton();
+  }
+}
+
+function onPlayerStateChange(event){
+  if(event.data === YT.PlayerState.ENDED){
+    ytPlayer.seekTo(0);
+    ytPlayer.playVideo();
+  }
+}
+
+/* === Reproducir música: se llama en la primera interacción del usuario === */
+function tryPlayMusic(){
+  if(musicUnlocked) return;   // Ya se intentó antes
+  musicUnlocked = true;
+
+  if(musicReady && ytPlayer && typeof ytPlayer.playVideo === 'function'){
+    ytPlayer.playVideo();
+    musicPlaying = true;
+    updateMusicButton();
+  } else {
+    // La API aún no está lista: onPlayerReady se encargará
+    musicPlaying = true;
+    updateMusicButton();
+  }
+}
+
+function toggleMusic(){
+  if(!musicReady || !ytPlayer || typeof ytPlayer.pauseVideo !== 'function'){
+    // Si aún no está lista, marcamos intención
+    musicUnlocked = true;
+    musicPlaying = true;
+    updateMusicButton();
+    return;
+  }
+  if(musicPlaying){
+    ytPlayer.pauseVideo();
+    musicPlaying = false;
+  } else {
+    ytPlayer.playVideo();
+    musicPlaying = true;
+  }
+  updateMusicButton();
+}
+
+function updateMusicButton(){
+  if(musicPlaying){
+    musicBtn.classList.add('playing');
+    musicBtn.innerHTML = '🎵';
+    musicBtn.setAttribute('aria-label', 'Pausar música');
+    musicBtn.title = 'Pausar música';
+  } else {
+    musicBtn.classList.remove('playing');
+    musicBtn.innerHTML = '🔇';
+    musicBtn.setAttribute('aria-label', 'Reproducir música');
+    musicBtn.title = 'Reproducir música';
+  }
+}
+
+musicBtn.addEventListener('click', function(e){
+  e.stopPropagation();
+  toggleMusic();
+});
+
+/* ===== DESBLOQUEO DE AUDIO CON LA PRIMERA INTERACCIÓN ===== */
+/* Cualquier clic, toque o tecla desbloquea la reproducción automática */
+['click','touchstart','keydown','pointerdown'].forEach(function(evt){
+  document.addEventListener(evt, tryPlayMusic, { once:false, passive:true });
+});
+
 /* ===== CONSTRUIR PÁGINAS ===== */
 function buildPages() {
   pagesData.forEach((data, index) => {
@@ -691,7 +831,6 @@ function buildPages() {
     pagesContainer.appendChild(page);
   });
 
-  // Página final
   const finalPage = document.createElement('div');
   finalPage.className = 'page page-final';
   finalPage.dataset.index = pagesData.length;
@@ -741,7 +880,6 @@ function showPage(index) {
   updateNavButtons();
   window.scrollTo({top: 0, behavior: 'smooth'});
 
-  // Confeti al entrar a la página final
   if (index === totalPages - 1) {
     setTimeout(() => createConfetti(120), 300);
   }
@@ -872,7 +1010,10 @@ function init() {
   buildPages();
   buildNav();
 
-  document.getElementById('startBtn').addEventListener('click', startBook);
+  document.getElementById('startBtn').addEventListener('click', function(e){
+    e.stopPropagation();
+    startBook();
+  });
   document.getElementById('cover').addEventListener('click', (e) => {
     if (e.target.id === 'cover' || e.target.closest('.cover')) {
       if (e.target.tagName !== 'BUTTON') startBook();
@@ -889,7 +1030,6 @@ function init() {
   });
 }
 
-// Limpiar galerías vacías
 setTimeout(() => {
   document.querySelectorAll('.page-gallery').forEach(gallery => {
     if (!gallery.querySelector('img') && gallery.children.length > 0) {
